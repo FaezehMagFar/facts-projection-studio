@@ -29,8 +29,6 @@ components on the destination computer.
 - Native desktop Linux with Python 3/Tk and Docker Engine
 - macOS is not supported by this installer
 
-Allow at least 60 GB of free space for a complete local-projection installation.
-
 ## Start on Windows
 
 1. Install Docker Desktop, use its WSL2 backend, and start Docker Desktop.
