@@ -11,6 +11,8 @@ Dashboard developer: Faezeh Maghsoodifar, The University of Alabama.
 > endorsed by, or maintained by the FACTS development team. FACTS remains an
 > independent open-source scientific framework.
 
+![FACTS Projection Studio Run projections interface](docs/images/facts-projection-studio-run-tab.png)
+
 ## Download
 
 Windows users should download the current packaged ZIP from the repository's
