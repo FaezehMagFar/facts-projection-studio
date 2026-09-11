@@ -160,6 +160,11 @@ a smoke test. Do not treat a reduced smoke test as research output.
 
 See `THIRD_PARTY_NOTICES.md` for upstream projects and licenses.
 
+## License
+
+FACTS Projection Studio is released under the [MIT License](LICENSE). Upstream
+FACTS components and other third-party projects retain their own licenses.
+
 ## Rebuilding the Windows interface
 
 Run `packaging\build_windows.ps1` from PowerShell. It creates a clean
