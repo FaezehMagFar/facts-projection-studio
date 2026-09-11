@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+#
+# Launch the FACTS desktop dashboard from Ubuntu/WSL.
+#
+#   ./facts-dashboard
+#
+# Checks the GUI stack and container runtime first so failures are explained
+# here rather than as a stack trace or a hung window.
+
+set -uo pipefail
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+APP="$SCRIPT_DIR/facts_dashboard.py"
+
+fail() { printf '\nERROR: %s\n' "$1" >&2; exit 1; }
+
+[[ -f "$APP" ]] || fail "facts_dashboard.py not found next to this script."
+
+# --- Python -----------------------------------------------------------------
+
+command -v python3 >/dev/null || fail "python3 is not installed:  sudo apt install -y python3"
+
+if ! python3 -c 'import tkinter' 2>/dev/null; then
+  cat >&2 <<'EOF'
+
+ERROR: python3-tk is not installed, so the dashboard cannot draw a window.
+
+Install it with:
+
+    sudo apt update && sudo apt install -y python3-tk
+
+EOF
+  exit 1
+fi
+
+# --- Display ----------------------------------------------------------------
+
+if [[ -z "${DISPLAY:-}" && -z "${WAYLAND_DISPLAY:-}" ]]; then
+  cat >&2 <<'EOF'
+
+ERROR: No display available.
+
+On Windows 11 this normally comes free via WSLg. If DISPLAY is unset, run
+"wsl --update" from PowerShell and restart the distro with "wsl --shutdown".
+
+EOF
+  exit 1
+fi
+
+# --- Container runtime ------------------------------------------------------
+
+RUNTIME=""
+for c in docker podman nerdctl; do
+  if command -v "$c" >/dev/null; then RUNTIME="$c"; break; fi
+done
+
+if [[ -z "$RUNTIME" ]]; then
+  echo "WARNING: No container runtime found. Open the FACTS Setup tab for guidance." >&2
+  runtime_label="not installed"
+elif ! "$RUNTIME" info >/dev/null 2>&1; then
+  echo "WARNING: $RUNTIME is installed but its daemon is not responding." >&2
+  runtime_label="$RUNTIME (engine stopped)"
+else
+  runtime_label="$RUNTIME ($("$RUNTIME" --version 2>/dev/null | head -1))"
+fi
+
+echo "GUI: ${WAYLAND_DISPLAY:-$DISPLAY}   runtime: $runtime_label"
+echo "Starting FACTS Dashboard..."
+
+exec python3 "$APP" "$@"

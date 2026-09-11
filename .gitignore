@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Build outputs
+.build/
+build/
+dist/
+public_dist/
+public_release/
+*.spec
+*.exe
+*.zip
+
+# FACTS outputs and runtime files
+outputs/
+FACTS_runs/
+*.nc
+*.log
+FACTS_STATUS.txt
+workflows.yml
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
