@@ -594,6 +594,11 @@ class FactsWindow(QMainWindow):
             QGroupBox#disclaimerCard { background: #fff8e8; border: 1px solid #efd496; border-left: 5px solid #d99a16; border-radius: 8px; padding: 18px 16px 14px 16px; }
             QGroupBox#disclaimerCard::title { color: #805600; font-size: 15px; font-weight: 700; left: 16px; }
             QLineEdit, QComboBox, QSpinBox, QTableWidget { background: #ffffff; border: 1px solid #cbd8de; border-radius: 3px; padding: 6px; }
+            QCheckBox { spacing: 9px; background: transparent; }
+            QCheckBox::indicator { width: 17px; height: 17px; background: #ffffff; border: 2px solid #17252c; border-radius: 4px; }
+            QCheckBox::indicator:hover { border-color: #1976d2; }
+            QCheckBox::indicator:checked { background: #111111; border-color: #111111; }
+            QCheckBox::indicator:disabled { background: #e5eaed; border-color: #9eabb1; }
             QTextEdit { background: #0c2029; color: #dce9ed; border: 0; border-radius: 4px; padding: 8px; }
             QPushButton { background: #e6eef1; border: 0; border-radius: 4px; padding: 8px 14px; font-weight: 600; }
             QPushButton:hover { background: #d8e5e9; }
