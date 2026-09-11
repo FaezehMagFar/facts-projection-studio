@@ -1,5 +1,7 @@
 # FACTS Projection Studio
 
+[![DOI](https://zenodo.org/badge/1365298162.svg)](https://doi.org/10.5281/zenodo.22701133)
+
 A native Windows desktop interface for installing, configuring, running, and
 monitoring the containerized Framework for Assessing Changes To Sea-level
 (FACTS), plus a Linux/WSL fallback launcher.
